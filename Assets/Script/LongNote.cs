@@ -57,6 +57,7 @@ public class LongNote : MonoBehaviour
         
         press = false;
         targetButton.press = press;
+        targetButton.pressEffect.gameObject.SetActive(false);
         
         Destroy(gameObject);
     }

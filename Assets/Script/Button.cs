@@ -59,7 +59,7 @@ public class Button : MonoBehaviour
             {
                 whiteBackGround.SetActive(false);
 
-                if (Time.time - clickTime >= 0.1f)
+                if (Time.time - clickTime >= 0.3f)
                 {
                     Debug.Log("롱노트");
 

@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     public int combo = 0;
 
+    public AudioSource audio;
+
     private void Awake()
     {
         if (instance == null)
@@ -44,6 +46,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         comboText.text = "COMBO : " + combo;
+
+        StartCoroutine(PlayMusic());
     }
 
     public void PlusCombo()
@@ -58,5 +62,12 @@ public class GameManager : MonoBehaviour
         combo = 0;
         
         comboText.text = "COMBO : " + combo;
+    }
+
+    private IEnumerator PlayMusic()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        audio.Play();
     }
 }
