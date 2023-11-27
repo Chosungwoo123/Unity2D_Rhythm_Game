@@ -33,6 +33,8 @@ public class LongNote : MonoBehaviour
         if (Vector3.Distance(transform.position, buttonPos) > 1)
         {
             Destroy(gameObject);
+            _button.pressEffect.gameObject.SetActive(false);
+            _button.press = false;
             return;
         }
 
@@ -74,5 +76,15 @@ public class LongNote : MonoBehaviour
         }
         
         line.SetPosition(1, endObj.transform.position);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("End Line") && !press)
+        {
+            GameManager.Instance.ResetCombo();
+        
+            Destroy(gameObject);
+        }
     }
 }

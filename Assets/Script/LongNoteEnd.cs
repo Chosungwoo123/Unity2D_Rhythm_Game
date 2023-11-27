@@ -25,4 +25,14 @@ public class LongNoteEnd : MonoBehaviour
         longNote.StopPress(false);
         Destroy(gameObject);
     }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("End Line"))
+        {
+            longNote.StopPress(true);
+            
+            Destroy(longNote);
+        }
+    }
 }

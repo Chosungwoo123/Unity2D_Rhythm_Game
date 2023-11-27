@@ -126,7 +126,7 @@ public class Button : MonoBehaviour
                 if (_longNote != null)
                 {
                     pressEffect.gameObject.SetActive(false);
-                    pressEffect.Stop();
+                    _longNote.StopPress(true);
                     _longNote = null;
                 }
             }
