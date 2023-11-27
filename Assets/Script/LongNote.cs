@@ -13,6 +13,11 @@ public class LongNote : MonoBehaviour
 
     private LineRenderer line;
 
+    private void Start()
+    {
+        line = GetComponent<LineRenderer>();
+    }
+
     public void Init(Vector3 start, Vector3 end)
     {
         transform.position = start;
@@ -21,9 +26,16 @@ public class LongNote : MonoBehaviour
         line = GetComponent<LineRenderer>();
     }
     
-    public void StartPress(Vector3 _startPos)
+    public void StartPress(Vector3 buttonPos)
     {
-        startPos = _startPos;
+        if (Vector3.Distance(transform.position, buttonPos) > 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        startPos = buttonPos;
+        press = true;
     }
 
     private void Update()

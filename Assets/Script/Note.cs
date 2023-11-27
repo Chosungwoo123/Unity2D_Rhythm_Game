@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
+    public GameObject hitEffect;
+    
     public void HitNote(Vector3 buttonPos)
     {
-        if (Vector3.Distance(transform.position, buttonPos) <= 2)
+        if (Vector3.Distance(transform.position, buttonPos) <= 1)
         {
             GameManager.Instance.PlusCombo();
+            Instantiate(hitEffect, transform.position, Quaternion.identity);
         }
-        else
+        else if (Vector3.Distance(transform.position, buttonPos) > 1)
         {
             GameManager.Instance.ResetCombo();
         }

@@ -6,20 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private static GameManager instance = null;
-
-    public static GameManager Instance
-    {
-        get
-        {
-            if (null == instance)
-            {
-                return null;
-            }
-
-            return instance;
-        }
-    }
+    public static GameManager Instance { get; private set; }
 
     public Transform noteParent;
 
@@ -31,9 +18,9 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
         else
         {
