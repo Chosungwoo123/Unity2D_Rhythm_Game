@@ -9,6 +9,9 @@ public class Button : MonoBehaviour
     public KeyCode keyCode;
     public GameObject notePrefab;
     public LongNote longNotePrefab;
+    public LayerMask noteLayer;
+
+    public Vector2 judgmentRange;
 
     private Transform clickPos;
     private float clickTime;
@@ -29,6 +32,8 @@ public class Button : MonoBehaviour
 
     private void ButtonUpdate()
     {
+        #region EditMode
+        
         if (GameManager.Instance.editMode)
         {
             if (Input.GetKeyDown(keyCode))
@@ -60,5 +65,41 @@ public class Button : MonoBehaviour
                 note.transform.parent = GameManager.Instance.noteParent;
             }
         }
+        
+        #endregion
+
+        #region PlayMode
+
+        else if (!GameManager.Instance.editMode)
+        {
+            if (Input.GetKeyDown(keyCode))
+            {
+                whiteBackGround.SetActive(true);
+                
+                Collider2D[] notes = Physics2D.OverlapBoxAll(transform.position, judgmentRange, 0, noteLayer);
+
+                foreach (var note in notes)
+                {
+                    if (note.TryGetComponent(out Note temp))
+                    {
+                        temp.HitNote(transform.position);
+                    }
+                }
+            }
+            
+            if (Input.GetKeyUp(keyCode))
+            {
+                whiteBackGround.SetActive(false);
+            }
+        }
+
+        #endregion
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        
+        Gizmos.DrawWireCube(transform.position, judgmentRange);
     }
 }

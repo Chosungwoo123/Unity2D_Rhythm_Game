@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,7 +23,11 @@ public class GameManager : MonoBehaviour
 
     public Transform noteParent;
 
+    public Text comboText;
+
     public bool editMode;
+
+    public int combo = 0;
 
     private void Awake()
     {
@@ -34,5 +39,24 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        comboText.text = "COMBO : " + combo;
+    }
+
+    public void PlusCombo()
+    {
+        combo++;
+        
+        comboText.text = "COMBO : " + combo;
+    }
+    
+    public void ResetCombo()
+    {
+        combo = 0;
+        
+        comboText.text = "COMBO : " + combo;
     }
 }

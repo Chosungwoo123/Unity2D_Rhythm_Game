@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Note : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void HitNote(Vector3 buttonPos)
     {
+        if (Vector3.Distance(transform.position, buttonPos) <= 2)
+        {
+            GameManager.Instance.PlusCombo();
+        }
+        else
+        {
+            GameManager.Instance.ResetCombo();
+        }
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Destroy(gameObject);
     }
 }
