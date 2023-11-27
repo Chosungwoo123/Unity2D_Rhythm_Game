@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        comboText.text = "COMBO : " + combo;
+        comboText.text = "COMBO\n" + combo;
 
         StartCoroutine(PlayMusic());
     }
@@ -54,14 +54,14 @@ public class GameManager : MonoBehaviour
     {
         combo++;
         
-        comboText.text = "COMBO : " + combo;
+        comboText.text = "COMBO\n" + combo;
     }
     
     public void ResetCombo()
     {
         combo = 0;
         
-        comboText.text = "COMBO : " + combo;
+        comboText.text = "COMBO\n" + combo;
     }
 
     private IEnumerator PlayMusic()
