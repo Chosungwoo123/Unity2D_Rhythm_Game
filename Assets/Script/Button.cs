@@ -13,6 +13,8 @@ public class Button : MonoBehaviour
 
     public Vector2 judgmentRange;
 
+    public ParticleSystem pressEffect;
+
     public bool press = false;
 
     private LongNote _longNote;
@@ -29,6 +31,7 @@ public class Button : MonoBehaviour
         }
         
         anim = GetComponent<Animator>();
+        pressEffect.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -56,7 +59,7 @@ public class Button : MonoBehaviour
             {
                 whiteBackGround.SetActive(false);
 
-                if (Time.time - clickTime >= 0.5f)
+                if (Time.time - clickTime >= 0.1f)
                 {
                     Debug.Log("롱노트");
 
@@ -95,6 +98,7 @@ public class Button : MonoBehaviour
                     if (note.TryGetComponent(out LongNote longNote))
                     {
                         _longNote = longNote;
+                        pressEffect.gameObject.SetActive(true);
                         longNote.StartPress(transform.position, this);
                     }
                 }
@@ -113,6 +117,7 @@ public class Button : MonoBehaviour
                         if (longNoteEnd.longNote == _longNote)
                         {
                             _longNote = null;
+                            pressEffect.gameObject.SetActive(false);
                             longNoteEnd.End(transform.position);
                         }
                     }
@@ -120,7 +125,8 @@ public class Button : MonoBehaviour
 
                 if (_longNote != null)
                 {
-                    _longNote.StopPress(true);
+                    pressEffect.gameObject.SetActive(false);
+                    pressEffect.Stop();
                     _longNote = null;
                 }
             }
