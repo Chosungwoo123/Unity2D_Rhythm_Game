@@ -11,6 +11,8 @@ public class LongNote : MonoBehaviour
 
     private Vector3 startPos;
 
+    private Button targetButton;
+
     private LineRenderer line;
 
     private void Start()
@@ -26,7 +28,7 @@ public class LongNote : MonoBehaviour
         line = GetComponent<LineRenderer>();
     }
     
-    public void StartPress(Vector3 buttonPos)
+    public void StartPress(Vector3 buttonPos, Button _button)
     {
         if (Vector3.Distance(transform.position, buttonPos) > 1)
         {
@@ -34,13 +36,42 @@ public class LongNote : MonoBehaviour
             return;
         }
 
+        targetButton = _button;
         startPos = buttonPos;
         press = true;
+        targetButton.press = press;
+        
+        endObj.GetComponent<LongNoteEnd>().Init(this);
+    }
+
+    public void StopPress(bool reset)
+    {
+        if (reset)
+        {
+            GameManager.Instance.ResetCombo();
+        }
+        else if (!reset)
+        {
+            GameManager.Instance.PlusCombo();
+        }
+        
+        press = false;
+        targetButton.press = press;
+        
+        Destroy(gameObject);
     }
 
     private void Update()
     {
-        line.SetPosition(0, press ? startPos : transform.position);
+        if (press)
+        {
+            line.SetPosition(0, startPos);
+        }
+        else
+        {
+            line.SetPosition(0, transform.position);
+        }
+        
         line.SetPosition(1, endObj.transform.position);
     }
 }
