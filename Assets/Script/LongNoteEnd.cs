@@ -13,11 +13,11 @@ public class LongNoteEnd : MonoBehaviour
     
     public void End(Vector3  buttonPos)
     {
-        if(Vector3.Distance(transform.position, buttonPos) <= 0.5f)
+        if(Vector3.Distance(transform.position, buttonPos) <= 1f)
         {
             GameManager.Instance.PlusCombo();
         }
-        else if (Vector3.Distance(transform.position, buttonPos) > 0.5f)
+        else if (Vector3.Distance(transform.position, buttonPos) > 1f)
         {
             GameManager.Instance.ResetCombo();
         }
