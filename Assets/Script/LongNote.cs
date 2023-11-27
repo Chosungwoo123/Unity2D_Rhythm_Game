@@ -18,6 +18,8 @@ public class LongNote : MonoBehaviour
     private void Start()
     {
         line = GetComponent<LineRenderer>();
+        
+        transform.localScale = new Vector3(1, transform.localScale.y / GameManager.Instance.songSpeed, 1);
     }
 
     public void Init(Vector3 start, Vector3 end)

@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     public AudioSource audio;
 
+    public float songSpeed = 1;
+
     private void Awake()
     {
         if (instance == null)

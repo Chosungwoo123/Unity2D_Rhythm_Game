@@ -6,7 +6,12 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     public GameObject hitEffect;
-    
+
+    private void Start()
+    {
+        transform.localScale = new Vector3(1, 1 / GameManager.Instance.songSpeed, 1);
+    }
+
     public void HitNote(Vector3 buttonPos)
     {
         if (Vector3.Distance(transform.position, buttonPos) <= 1)

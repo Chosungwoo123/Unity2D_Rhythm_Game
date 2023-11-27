@@ -16217,6 +16217,7 @@ MonoBehaviour:
   editMode: 0
   combo: 0
   audio: {fileID: 655404920}
+  songSpeed: 1
 --- !u!4 &655404919
 Transform:
   m_ObjectHideFlags: 0
