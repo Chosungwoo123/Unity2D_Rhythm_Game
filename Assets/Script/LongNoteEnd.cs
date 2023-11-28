@@ -28,7 +28,7 @@ public class LongNoteEnd : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("End Line"))
+        if (other.CompareTag("End Line") && !GameManager.Instance.editMode)
         {
             longNote.StopPress(true);
             

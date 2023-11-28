@@ -83,7 +83,7 @@ public class LongNote : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("End Line") && !press)
+        if (other.CompareTag("End Line") && !press && !GameManager.Instance.editMode)
         {
             GameManager.Instance.ResetCombo();
         

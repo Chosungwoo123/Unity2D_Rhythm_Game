@@ -29,7 +29,7 @@ public class Note : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("End Line"))
+        if (other.CompareTag("End Line") && !GameManager.Instance.editMode)
         {
             GameManager.Instance.ResetCombo();
         
